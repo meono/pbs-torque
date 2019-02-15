@@ -3,6 +3,7 @@ import os
 import sys
 import argparse
 import subprocess
+import xml.etree.cElementTree as ET
 
 from snakemake.utils import read_job_properties
 
@@ -79,7 +80,20 @@ extras=""
 if args.depend:
     for m in args.depend.split(" "):
         if m not in depend:
-            depend = depend + ":" + m
+            res = subprocess.run("qstat -f -x {}".format(depend), check=True, stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT, shell=True)
+
+            xmldoc = ET.ElementTree(ET.fromstring(res.stdout.decode())).getroot()
+            job_state = xmldoc.findall('.//job_state')[0].text
+
+            if job_state == "C":
+                exit_status = xmldoc.findall('.//exit_status')[0].text
+                if exit_status == '0':
+                    continue
+                else:
+                    raise Exception("Dependency job failed.")
+            else:
+                depend = depend + ":" + m
 if depend:
     depend = " -W \"depend=afterok" + depend + "\""
 
