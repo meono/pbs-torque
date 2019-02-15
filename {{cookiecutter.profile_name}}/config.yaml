@@ -5,3 +5,7 @@ jobs: 5000
 immediate-submit: {{cookiecutter.immediate_submit}}
 verbose: true
 notemp: true
+max-jobs-per-second: 1
+local-cores: 1
+rerun-incomplete: true
+keep-going: true
