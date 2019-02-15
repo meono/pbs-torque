@@ -80,7 +80,7 @@ extras=""
 if args.depend:
     for m in args.depend.split(" "):
         if m not in depend:
-            res = subprocess.run("qstat -f -x {}".format(depend), check=True, stdout=subprocess.PIPE,
+            res = subprocess.run("qstat -f -x {}".format(m), check=True, stdout=subprocess.PIPE,
                                  stderr=subprocess.STDOUT, shell=True)
 
             xmldoc = ET.ElementTree(ET.fromstring(res.stdout.decode())).getroot()
