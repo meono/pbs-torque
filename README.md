@@ -12,7 +12,7 @@ To deploy this profile, run
     cd ~/.config/snakemake
     cookiecutter https://github.com/meono/pbs-torque.git
 
-Then, you'll need to customize/modify the config.yaml file in ~/.config/snakemake. Pay attention to the script paths (eg.):
+Then, you may want to customizeconfig.yaml file in -home_path-/.config/snakemake
 
      cluster: "/home/user/.config/snakemake/pbs-torque/pbs-submit.py -A cu_10010 -W group_list=cu_10010 --depend \"{dependencies}\""
      cluster-status: "/home/user/.config/snakemake/pbs-torque/pbs-status.py"
