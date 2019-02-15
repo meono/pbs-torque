@@ -1,6 +1,6 @@
-cluster: "$HOME/.config/snakemake/{{cookiecutter.profile_name}}/pbs-submit.py --depend \"{dependencies}\""
-cluster-status: "$HOME/.config/snakemake/{{cookiecutter.profile_name}}/pbs-status.py"
-jobscript: "$HOME/.config/snakemake/{{cookiecutter.profile_name}}/pbs-jobscript.sh"
+cluster: "~/.config/snakemake/{{cookiecutter.profile_name}}/pbs-submit.py --depend \"{dependencies}\""
+cluster-status: "~/.config/snakemake/{{cookiecutter.profile_name}}/pbs-status.py"
+jobscript: "~/.config/snakemake/{{cookiecutter.profile_name}}/pbs-jobscript.sh"
 jobs: 5000
 immediate-submit: {{cookiecutter.immediate_submit}}
 verbose: true
