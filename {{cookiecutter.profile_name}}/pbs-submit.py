@@ -78,7 +78,8 @@ extras=""
 
 if args.depend:
     for m in args.depend.split(" "):
-        depend = depend + ":" + m
+        if m not in depend:
+            depend = depend + ":" + m
 if depend:
     depend = " -W \"depend=afterok" + depend + "\""
 
